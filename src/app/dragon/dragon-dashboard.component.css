@@ -1,0 +1,18 @@
+.custom-card {
+  margin: 20px 20px;
+  border: 1px solid red;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.wrap-class {
+  overflow: hidden;
+  width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.my-custom-tooltip {
+  max-width: unset !important;
+}
