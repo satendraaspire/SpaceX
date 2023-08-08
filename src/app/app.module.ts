@@ -20,11 +20,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragonModule } from './dragon/dragon.module';
 import { CapsulesModule } from './capsules/capsules.module';
 import { LandpadsModule } from './landpads/landpads.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,

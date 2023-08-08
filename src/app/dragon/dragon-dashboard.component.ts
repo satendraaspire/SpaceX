@@ -22,15 +22,15 @@ export interface PeriodicElement {
   styleUrls: ['./dragon-dashboard.component.css'],
 })
 export class DragonDashboardComponent implements OnInit, AfterViewInit {
-  displayedColumns: any;
+  public displayedColumns!: any[];
   public dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('table') table!: MatTable<any>;
-  dragDisabled = true;
+
   constructor(private dragonService: DragonService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getAllDragons();
   }
 

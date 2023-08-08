@@ -26,9 +26,8 @@ const routes: Routes = [
   },
 
   {
-    path:'landpads-dashboard',
+    path:'',
     loadChildren: ()=> import('./landpads/landpads-routing.module').then(m=>m.LandpadsRoutingModule),
-    title:'Landpads Dashboard'
   },
 
   {
