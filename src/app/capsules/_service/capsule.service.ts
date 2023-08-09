@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { capsulesAPI } from 'src/app/publicAPI.constant';
+import { CapsuleType } from '../capsule-dashboard.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class CapsuleService {
   constructor(private http: HttpClient) {}
 
-  public getAllCapsules(): Observable<any> {
-    return this.http.get('https://api.spacexdata.com/v4/capsules');
+  public getAllCapsules(): Observable<CapsuleType[]> {
+    return this.http.get<CapsuleType[]>(capsulesAPI);
   }
 }

@@ -1,27 +1,31 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { CapsuleService } from './_service/capsule.service';
+import { LandpadsService } from './_service/landpads.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { CapsuleType } from './capsule-dashboard.interface';
+import { Router } from '@angular/router';
+import { DashboardType } from './landpads-dashboard.interface';
 
 @Component({
-  selector: 'app-capsule-dashboard',
-  templateUrl: './capsule-dashboard.component.html',
-  styleUrls: ['./capsule-dashboard.component.css'],
+  selector: 'app-landpads-dashboard',
+  templateUrl: './landpads-dashboard.component.html',
+  styleUrls: ['./landpads-dashboard.component.css'],
 })
-export class CapsuleDashboardComponent implements OnInit, AfterViewInit {
+export class LandpadsDashboardComponent implements OnInit, AfterViewInit {
   public displayedColumns!: any[];
   public dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild('table') table!: MatTable<CapsuleType>;
+  @ViewChild('table') table!: MatTable<DashboardType>;
 
-  constructor(private capsuleService: CapsuleService) {}
+  constructor(
+    private landPadsService: LandpadsService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
-    this.getAllCapsules();
+    this.getAllLandingPads();
   }
 
   public ngAfterViewInit() {
@@ -29,14 +33,13 @@ export class CapsuleDashboardComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public getAllCapsules() {
-    this.capsuleService.getAllCapsules().subscribe((res) => {
+  public getAllLandingPads() {
+    this.landPadsService.getAllLandingPads().subscribe((res) => {
       this.displayedColumns = [
-        'serial',
+        'name',
         'status',
         'type',
-        'water_landings',
-        'land_landing',
+        'wikipedia',
         'launches',
       ];
       this.dataSource.data = res;
@@ -52,5 +55,11 @@ export class CapsuleDashboardComponent implements OnInit, AfterViewInit {
       );
       this.dataSource.data = [...this.dataSource.data];
     }
+  }
+
+  public redirectToLaunhesDetails(id: number) {
+    this.router.navigate(['/landpads-launches-details'], {
+      queryParams: { landingPadId: id },
+    });
   }
 }

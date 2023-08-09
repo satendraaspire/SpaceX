@@ -1,0 +1,160 @@
+<mat-dialog-content>
+  <div class="card custom-card">
+    <div class="card-header">
+      <ul
+        class="nav nav-pills card-header-pills justify-content-start align-items-center"
+      >
+        <li class="nav-item">
+          <a class="nav-link"> <strong class="text-dark">Details</strong></a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="className">
+        <div class="card-body">
+          <div class="mt-2 mb-3">
+            <h5>Ships</h5>
+            <div
+              class="row row-cols-1 row-cols-md-4 g-4"
+              *ngIf="
+                getShipsDetails.length > valueType.initialValue;
+                else emptyShips
+              "
+            >
+              <div class="col custom-col" *ngFor="let data of getShipsDetails">
+                <div class="card h-100">
+                  <img
+                    [src]="data.image"
+                    class="card-img-top custom_img"
+                    alt="Not-Found"
+                  />
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>
+                        Name: <span class="text-info">{{ data.name }}</span>
+                      </p>
+                      <p>
+                        Roles: <span class="text-info">{{ data.roles }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #emptyShips>
+              <div class="col custom-col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>No Data Found!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+
+          <div class="mt-3 mb-3">
+            <h5>Capsules</h5>
+            <div
+              class="row row-cols-1 row-cols-md-4 g-4"
+              *ngIf="
+                getCapsulesDetails.length > valueType.initialValue;
+                else emptyCapsules
+              "
+            >
+              <div
+                class="col custom-col"
+                *ngFor="let data of getCapsulesDetails"
+              >
+                <div class="card h-100">
+                  <img
+                    [src]="capsulesImageURL"
+                    class="card-img-top custom_img"
+                    alt="Not-Found"
+                  />
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>
+                        Serial: <span class="text-info">{{ data.Serial }}</span>
+                      </p>
+                      <p>
+                        Status: <span class="text-info">{{ data.status }}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #emptyCapsules>
+              <div class="col custom-col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>No Data Found!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+
+          <div class="mt-3 mb-3">
+            <h5>Payloads</h5>
+            <div
+              class="row row-cols-1 row-cols-md-4 g-4"
+              *ngIf="
+                getPayloadsDetails.length > valueType.initialValue;
+                else emptypayloads
+              "
+            >
+              <div
+                class="col custom-col"
+                *ngFor="let data of getPayloadsDetails"
+              >
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>
+                        Name: <span class="text-info">{{ data.name }}</span>
+                      </p>
+                      <p>
+                        Type: <span class="text-info">{{ data.type }}</span>
+                      </p>
+                      <p>
+                        Details:
+                        <span class="text-info">
+                          <a
+                            href="{{ data.dragon.manifest }}"
+                            target="_blank"
+                            >{{ data.dragon.manifest }}</a
+                          >
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #emptypayloads>
+              <div class="col custom-col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-text custom_text">
+                      <p>No Data Found!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">
+    {{ data.buttonText.cancel }}
+  </button>
+</mat-dialog-actions>

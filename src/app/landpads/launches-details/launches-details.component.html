@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="mt-3 mb-4" *ngIf="getLaunchsDetails.length > valueType.initialValue; else notfound">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" *ngFor="let item of getLaunchsDetails">
+        <div
+          class="card h-100"
+          role="button"
+          (click)="getlaunchesData(item.id)"
+        >
+          <img
+            [src]="landPadsImageURL"
+            class="card-img-top"
+            alt="Not-Found"
+          />
+          <div class="card-body">
+            <p class="card-text">
+              Name : <strong>{{ item.name }}</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #notfound>
+    <div class="text-center mt-5">
+      <h3>Data Not Found</h3>
+    </div>
+  </ng-template>
+</div>

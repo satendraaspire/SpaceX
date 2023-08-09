@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { dragonsAPI } from 'src/app/publicAPI.constant';
+import { DragonType } from '../dragon-dashboard.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +10,7 @@ import { Observable } from 'rxjs';
 export class DragonService {
   constructor(private http: HttpClient) {}
 
-  public getAllDragons(): Observable<any> {
-    return this.http.get('https://api.spacexdata.com/v4/dragons');
+  public getAllDragons(): Observable<DragonType[]> {
+    return this.http.get<DragonType[]>(dragonsAPI);
   }
 }

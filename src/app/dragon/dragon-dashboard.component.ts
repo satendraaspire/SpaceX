@@ -4,12 +4,8 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
-import {
-  CdkDragDrop,
-  CdkDropList,
-  CdkDrag,
-  moveItemInArray,
-} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DragonType } from './dragon-dashboard.interface';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -26,7 +22,7 @@ export class DragonDashboardComponent implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild('table') table!: MatTable<any>;
+  @ViewChild('table') table!: MatTable<DragonType>;
 
   constructor(private dragonService: DragonService) {}
 

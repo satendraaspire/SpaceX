@@ -5,7 +5,13 @@ import { CapsuleDashboardComponent } from './capsule-dashboard.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+  {
+    path: 'capsules-dashboard',
     component: CapsuleDashboardComponent,
+    title:'Capsules Dashboard'
   },
 ];
 

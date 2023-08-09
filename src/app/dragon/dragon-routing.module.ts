@@ -5,17 +5,15 @@ import { DragonService } from './_service/dragon.service';
 
 const routes: Routes = [
   {
-    path:'',
-    component:DragonDashboardComponent,
-    title:'Dragon Dashboard'
-  }
+    path: '',
+    component: DragonDashboardComponent,
+    title: 'Dragon Dashboard',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  providers:[
-    DragonService
-  ],
-  exports: [RouterModule]
+  providers: [DragonService],
+  exports: [RouterModule],
 })
-export class DragonRoutingModule { }
+export class DragonRoutingModule {}

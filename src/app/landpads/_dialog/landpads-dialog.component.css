@@ -1,0 +1,17 @@
+.custom_img {
+  height: 75px;
+  object-fit: cover;
+}
+.custom_text {
+  font-size: 10px;
+}
+.custom_text p {
+  margin-bottom: 7px;
+}
+.custom-col {
+  width: 150px;
+}
+.custom-card {
+  margin: 20px 20px;
+  border: 1px solid red;
+}
