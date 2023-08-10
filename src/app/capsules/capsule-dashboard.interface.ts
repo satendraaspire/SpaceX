@@ -1,41 +1,30 @@
 export interface CapsuleType {
-  serial: {
-    type: 'String';
-    required: true;
-    unique: true;
-  };
-  status: {
-    type: 'String';
-    enum: ['unknown', 'active', 'retired', 'destroyed'];
-    required: true;
-  };
-  type: {
-    type: 'String';
-    enum: ['Dragon 1.0', 'Dragon 1.1', 'Dragon 2.0'];
-    required: true;
-  };
-  dragon: {
-    type: 'UUID';
-  };
-  reuse_count: {
-    type: 'Number';
-    default: 0;
-  };
-  water_landings: {
-    type: 'Number';
-    default: 0;
-  };
-  land_landings: {
-    type: 'Number';
-    default: 0;
-  };
-  last_update: {
-    type: 'String';
-    default: null;
-  };
-  launches: [
+  docs: [
     {
-      type: 'UUID';
+      reuse_count: number;
+      water_landings: number;
+      land_landings: number;
+      last_update: string;
+      launches: [];
+      serial: string;
+      status: string;
+      type: string;
+      id: string;
     }
   ];
+  totalDocs: number;
+  limit: number;
+  totalPages: number;
+  page: number;
+  pagingCounter: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  prevPage: number;
+  nextPage: number;
+}
+
+export interface QueryType {
+  options: {
+    limit: number;
+  };
 }

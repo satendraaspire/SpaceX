@@ -2,7 +2,7 @@ export interface LandPadsOptionsType {
   buttonText: {
     cancel: string;
   };
-  linkedClient: [
+  launchesDetails: [
     {
       name: {
         type: 'String';

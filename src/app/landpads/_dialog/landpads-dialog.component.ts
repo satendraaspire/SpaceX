@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LandpadsService } from '../_service/landpads.service';
 import { CapsulesImageURL, ValueType } from '../landpads.constant';
 import { LandPadsOptionsType } from './landpads-dialog.interface';
+import { CapsuleType, PayloadType, ShipType } from '../landpads-dashboard.interface';
 
 @Component({
   selector: 'app-landpads-dialog',
@@ -10,9 +11,9 @@ import { LandPadsOptionsType } from './landpads-dialog.interface';
   styleUrls: ['./landpads-dialog.component.css'],
 })
 export class LandpadsDialogComponent implements OnInit {
-  public getShipsDetails: any[] = [];
-  public getCapsulesDetails: any[] = [];
-  public getPayloadsDetails: any[] = [];
+  public getShipsDetails: ShipType[] = [];
+  public getCapsulesDetails: CapsuleType[] = [];
+  public getPayloadsDetails: PayloadType[] = [];
   public capsulesImageURL = CapsulesImageURL;
   public valueType = ValueType;
 
@@ -28,14 +29,14 @@ export class LandpadsDialogComponent implements OnInit {
   }
 
   public getLunchDetails() {
-    this.data.linkedClient.map((res) => {
+    this.data.launchesDetails.map((res) => {
       this.getShipsData(res);
       this.getCapsulesData(res);
       this.getPayloadsData(res);
     });
   }
 
-  public getShipsData(shipData: any) {
+  public getShipsData(shipData:any) {
     shipData.ships.map((shipItem: string) => {
       this.landpadsService
         .getShipsDetailsById(shipItem)

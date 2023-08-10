@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LandpadsDialogComponent } from '../_dialog/landpads-dialog.component';
 import { DialogType, LandPadsImageURL, ValueType } from '../landpads.constant';
-import { DashboardType, LaunchesType } from '../landpads-dashboard.interface';
+import { DashboardType, LandpadsNameType, LaunchesType } from '../landpads-dashboard.interface';
 
 @Component({
   selector: 'app-launches-details',
@@ -12,9 +12,10 @@ import { DashboardType, LaunchesType } from '../landpads-dashboard.interface';
 })
 export class LaunchesDetailsComponent implements OnInit {
   public clientId!: string;
-  public getLaunchsDetails: any[] = [];
+  public getLaunchsDetails: LaunchesType[] = [];
   public landPadsImageURL = LandPadsImageURL;
   public valueType = ValueType;
+  public landpadName!: LandpadsNameType;
 
   constructor(
     private landpadsService: LandpadsService,
@@ -31,13 +32,14 @@ export class LaunchesDetailsComponent implements OnInit {
   public getLandingPadsDetailsById() {
     this.landpadsService
       .getLandingPadsDetailsById(this.clientId)
-      .subscribe((response: any) => {
+      .subscribe((response) => {
+        this.landpadName = response.name;
         this.getLaunchName(response);
       });
   }
 
   public getLaunchName(value: DashboardType) {
-    value.launches.find((res: any) => {
+    value.launches.map((res: any) => {
       this.landpadsService.getLaunchesDetailsById(res).subscribe((item) => {
         this.getLaunchsDetails.push(item);
       });
@@ -47,7 +49,7 @@ export class LaunchesDetailsComponent implements OnInit {
   public getlaunchesData(item: string) {
     this.landpadsService
       .getLaunchesDetailsById(item)
-      .subscribe((value: any) => {
+      .subscribe((value) => {
         this.openLaunchesDialog(value);
       });
   }
@@ -60,7 +62,7 @@ export class LaunchesDetailsComponent implements OnInit {
         buttonText: {
           cancel: DialogType.closeButtonText,
         },
-        linkedClient: [...[value]],
+        launchesDetails: [...[value]],
       },
     });
   }

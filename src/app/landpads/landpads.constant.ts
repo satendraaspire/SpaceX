@@ -10,7 +10,7 @@ export const ValueType = {
 };
 
 export const DialogType = {
-    height: '500',
+    height: '480',
     width: '1000',
     closeButtonText: 'Close',
 }

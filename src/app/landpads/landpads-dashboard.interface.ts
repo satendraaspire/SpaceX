@@ -387,3 +387,13 @@ export interface PayloadType {
     };
   };
 }
+
+export interface LandpadsNameType {
+  type: string;
+  default: null;
+}
+
+export interface LaunchesResponseType {
+  type: string;
+}
+

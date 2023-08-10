@@ -26,23 +26,23 @@ export class LandpadsService {
     return this.http.get<DashboardType[]>(landpadsAPI);
   }
 
-  public getLandingPadsDetailsById(id: string): Observable<DashboardType[]> {
-    return this.http.get<DashboardType[]>(`${landpadsAPI}/${id}`);
+  public getLandingPadsDetailsById(id: string): Observable<DashboardType> {
+    return this.http.get<DashboardType>(`${landpadsAPI}/${id}`);
   }
 
-  public getLaunchesDetailsById(id: string): Observable<LaunchesType[]> {
-    return this.http.get<LaunchesType[]>(`${launchesAPI}/${id}`);
+  public getLaunchesDetailsById(id: string): Observable<LaunchesType> {
+    return this.http.get<LaunchesType>(`${launchesAPI}/${id}`);
   }
 
-  public getShipsDetailsById(id: string): Observable<ShipType[]> {
-    return this.http.get<ShipType[]>(`${shipsAPI}/${id}`);
+  public getShipsDetailsById(id: string): Observable<ShipType> {
+    return this.http.get<ShipType>(`${shipsAPI}/${id}`);
   }
 
-  public getCapsulesDetailsById(id: string): Observable<CapsuleType[]> {
-    return this.http.get<CapsuleType[]>(`${capsulesAPI}/${id}`);
+  public getCapsulesDetailsById(id: string): Observable<CapsuleType> {
+    return this.http.get<CapsuleType>(`${capsulesAPI}/${id}`);
   }
 
-  public getPayloadsDetailsById(id: string): Observable<PayloadType[]> {
-    return this.http.get<PayloadType[]>(`${payloadsAPI}/${id}`);
+  public getPayloadsDetailsById(id: string): Observable<PayloadType> {
+    return this.http.get<PayloadType>(`${payloadsAPI}/${id}`);
   }
 }

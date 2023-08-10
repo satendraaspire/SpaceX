@@ -1,4 +1,9 @@
 <div class="container">
+  <nav class="mt-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/landpads-dashboard">landpads</a> / {{landpadName}}</li>
+    </ol>
+  </nav>
   <div class="mt-3 mb-4" *ngIf="getLaunchsDetails.length > valueType.initialValue; else notfound">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" *ngFor="let item of getLaunchsDetails">

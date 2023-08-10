@@ -1,143 +1,106 @@
 export interface DragonType {
-  name: {
-    type: 'String';
-    unique: true;
-    required: true;
-  };
-  type: {
-    type: 'String';
-    required: true;
-  };
-  active: {
-    type: 'Boolean';
-    required: true;
-  };
-  crew_capacity: {
-    type: 'Number';
-    required: true;
-  };
-  sidewall_angle_deg: {
-    type: 'Number';
-    required: true;
-  };
-  orbit_duration_yr: {
-    type: 'Number';
-    required: true;
-  };
-  dry_mass_kg: {
-    type: 'Number';
-    required: true;
-  };
-  dry_mass_lb: {
-    type: 'Number';
-    required: true;
-  };
-  first_flight: {
-    type: 'String';
-    default: null;
-  };
-  heat_shield: {
-    material: {
-      type: 'String';
-      required: true;
-    };
-    size_meters: {
-      type: 'Number';
-      required: true;
-    };
-    temp_degrees: {
-      type: 'Number';
-    };
-    dev_partner: {
-      type: 'String';
-    };
-  };
-  thrusters: {
-    type: 'Object';
-  };
-  launch_payload_mass: {
-    kg: {
-      type: 'Number';
-    };
-    lb: {
-      type: 'Number';
-    };
-  };
-  launch_payload_vol: {
-    cubic_meters: {
-      type: 'Number';
-    };
-    cubic_feet: {
-      type: 'Number';
-    };
-  };
-  return_payload_mass: {
-    kg: {
-      type: 'Number';
-    };
-    lb: {
-      type: 'Number';
-    };
-  };
-  return_payload_vol: {
-    cubic_meters: {
-      type: 'Number';
-    };
-    cubic_feet: {
-      type: 'Number';
-    };
-  };
-  pressurized_capsule: {
-    payload_volume: {
-      cubic_meters: {
-        type: 'Number';
+  docs: [
+    {
+      heat_shield: {
+        material: string;
+        size_meters: number;
+        temp_degrees: number;
+        dev_partner: string;
       };
-      cubic_feet: {
-        type: 'Number';
+      launch_payload_mass: {
+        kg: number;
+        lb: number;
       };
-    };
-  };
-  trunk: {
-    trunk_volume: {
-      cubic_meters: {
-        type: 'Number';
+      launch_payload_vol: {
+        cubic_meters: number;
+        cubic_feet: number;
       };
-      cubic_feet: {
-        type: 'Number';
+      return_payload_mass: {
+        kg: number;
+        lb: number;
       };
-    };
-    cargo: {
-      solar_array: {
-        type: 'Number';
+      return_payload_vol: {
+        cubic_meters: number;
+        cubic_feet: number;
       };
-      unpressurized_cargo: {
-        type: 'Boolean';
+      pressurized_capsule: {
+        payload_volume: {
+          cubic_meters: number;
+          cubic_feet: number;
+        };
       };
-    };
-  };
-  height_w_trunk: {
-    meters: {
-      type: 'Number';
-    };
-    feet: {
-      type: 'Number';
-    };
-  };
-  diameter: {
-    meters: {
-      type: 'Number';
-    };
-    feet: {
-      type: 'Number';
-    };
-  };
-  flickr_images: {
-    type: ['String'];
-  };
-  wikipedia: {
-    type: 'String';
-  };
-  description: {
-    type: 'String';
+      trunk: {
+        trunk_volume: {
+          cubic_meters: number;
+          cubic_feet: number;
+        };
+        cargo: {
+          solar_array: number;
+          unpressurized_cargo: boolean;
+        };
+      };
+      height_w_trunk: {
+        meters: number;
+        feet: number;
+      };
+      diameter: {
+        meters: number;
+        feet: number;
+      };
+      first_flight: string;
+      flickr_images: [];
+      name: string;
+      type: string;
+      active: boolean;
+      crew_capacity: number;
+      sidewall_angle_deg: number;
+      orbit_duration_yr: number;
+      dry_mass_kg: number;
+      dry_mass_lb: number;
+      thrusters: [
+        {
+          type: string;
+          amount: number;
+          pods: number;
+          fuel_1: string;
+          fuel_2: string;
+          isp: number;
+          thrust: {
+            kN: number;
+            lbf: number;
+          };
+        },
+        {
+          type: string;
+          amount: number;
+          pods: number;
+          fuel_1: string;
+          fuel_2: string;
+          isp: number;
+          thrust: {
+            kN: number;
+            lbf: number;
+          };
+        }
+      ];
+      wikipedia: string;
+      description: string;
+      id: string;
+    }
+  ];
+  totalDocs: number;
+  limit: number;
+  totalPages: number;
+  page: number;
+  pagingCounter: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  prevPage: number;
+  nextPage: null;
+}
+
+export interface QueryType {
+  options: {
+    limit: number;
   };
 }

@@ -1,28 +1,24 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DragonService } from './_service/dragon.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { DragonType } from './dragon-dashboard.interface';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { DragonType, QueryType } from './dragon-dashboard.interface';
+
 @Component({
   selector: 'app-dragon-dashboard',
   templateUrl: './dragon-dashboard.component.html',
   styleUrls: ['./dragon-dashboard.component.css'],
 })
-export class DragonDashboardComponent implements OnInit, AfterViewInit {
-  public displayedColumns!: any[];
+export class DragonDashboardComponent implements OnInit {
+  public displayedColumns!: string[];
   public dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('table') table!: MatTable<DragonType>;
+  public totalLength!: number;
 
   constructor(private dragonService: DragonService) {}
 
@@ -30,13 +26,17 @@ export class DragonDashboardComponent implements OnInit, AfterViewInit {
     this.getAllDragons();
   }
 
-  public ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  public getAllDragons() {
+    const data = {
+      options: {
+        limit: 1,
+      },
+    };
+    this.getDragonsDetailsWithQuery(data);
   }
 
-  public getAllDragons() {
-    this.dragonService.getAllDragons().subscribe((res) => {
+  public getDragonsDetailsWithQuery(data: QueryType) {
+    this.dragonService.getDragonsDetailsWithQuery(data).subscribe((res) => {
       this.displayedColumns = [
         'name',
         'type',
@@ -44,7 +44,8 @@ export class DragonDashboardComponent implements OnInit, AfterViewInit {
         'description',
         'wiki-link',
       ];
-      this.dataSource.data = res;
+      this.totalLength = res.totalDocs;
+      this.dataSource.data = res.docs;
     });
   }
 
@@ -57,5 +58,36 @@ export class DragonDashboardComponent implements OnInit, AfterViewInit {
       );
       this.dataSource.data = [...this.dataSource.data];
     }
+  }
+
+  public getPaginatorByQuery() {
+    if (this.paginator.pageIndex != 0) {
+      const data = {
+        options: {
+          limit: this.paginator.pageSize,
+          page: this.paginator.pageIndex + 1,
+          sort: { name: this.sort.direction },
+        },
+      };
+      this.getDragonsDetailsWithQuery(data);
+    } else {
+      const data = {
+        options: {
+          limit: this.paginator.pageSize,
+          sort: { name: this.sort.direction },
+        },
+      };
+      this.getDragonsDetailsWithQuery(data);
+    }
+  }
+
+  public getSortingByQuery() {
+    const data = {
+      options: {
+        limit: this.paginator.pageSize,
+        sort: { name: this.sort.direction },
+      },
+    };
+    this.getDragonsDetailsWithQuery(data);
   }
 }

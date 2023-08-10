@@ -13,7 +13,7 @@ import { DashboardType } from './landpads-dashboard.interface';
   styleUrls: ['./landpads-dashboard.component.css'],
 })
 export class LandpadsDashboardComponent implements OnInit, AfterViewInit {
-  public displayedColumns!: any[];
+  public displayedColumns!: string[];
   public dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
