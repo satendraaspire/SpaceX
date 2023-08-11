@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DragonType, QueryType } from './dragon-dashboard.interface';
+import { pageIndexData } from './dragon-dashboard.constant';
 
 @Component({
   selector: 'app-dragon-dashboard',
@@ -49,7 +50,7 @@ export class DragonDashboardComponent implements OnInit {
     });
   }
 
-  public dropTable(event: CdkDragDrop<any>) {
+  public dropTable(event: CdkDragDrop<MatTableDataSource<unknown>>) {
     if (event) {
       moveItemInArray(
         this.dataSource.data,
@@ -61,11 +62,11 @@ export class DragonDashboardComponent implements OnInit {
   }
 
   public getPaginatorByQuery() {
-    if (this.paginator.pageIndex != 0) {
+    if (this.paginator.pageIndex != pageIndexData.initail) {
       const data = {
         options: {
           limit: this.paginator.pageSize,
-          page: this.paginator.pageIndex + 1,
+          page: this.paginator.pageIndex + pageIndexData.current,
           sort: { name: this.sort.direction },
         },
       };

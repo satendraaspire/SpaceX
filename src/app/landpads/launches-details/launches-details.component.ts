@@ -4,14 +4,18 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LandpadsDialogComponent } from '../_dialog/landpads-dialog.component';
 import { DialogType, LandPadsImageURL, ValueType } from '../landpads.constant';
-import { DashboardType, LandpadsNameType, LaunchesType } from '../landpads-dashboard.interface';
+import {
+  DashboardType,
+  LandpadsNameType,
+  LaunchesType,
+} from '../landpads-dashboard.interface';
 
 @Component({
   selector: 'app-launches-details',
   templateUrl: './launches-details.component.html',
 })
 export class LaunchesDetailsComponent implements OnInit {
-  public clientId!: string;
+  public landingPadId!: string;
   public getLaunchsDetails: LaunchesType[] = [];
   public landPadsImageURL = LandPadsImageURL;
   public valueType = ValueType;
@@ -24,14 +28,14 @@ export class LaunchesDetailsComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.clientId =
+    this.landingPadId =
       this.activatedRoute.snapshot.queryParamMap.get('landingPadId')!;
     this.getLandingPadsDetailsById();
   }
 
   public getLandingPadsDetailsById() {
     this.landpadsService
-      .getLandingPadsDetailsById(this.clientId)
+      .getLandingPadsDetailsById(this.landingPadId)
       .subscribe((response) => {
         this.landpadName = response.name;
         this.getLaunchName(response);
@@ -39,19 +43,17 @@ export class LaunchesDetailsComponent implements OnInit {
   }
 
   public getLaunchName(value: DashboardType) {
-    value.launches.map((res: any) => {
+    value.launches.map((res) => {
       this.landpadsService.getLaunchesDetailsById(res).subscribe((item) => {
         this.getLaunchsDetails.push(item);
       });
     });
   }
 
-  public getlaunchesData(item: string) {
-    this.landpadsService
-      .getLaunchesDetailsById(item)
-      .subscribe((value) => {
-        this.openLaunchesDialog(value);
-      });
+  public getlaunchesData(item: LaunchesType) {
+    this.landpadsService.getLaunchesDetailsById(item.id).subscribe((value) => {
+      this.openLaunchesDialog(value);
+    });
   }
 
   public openLaunchesDialog(value: LaunchesType) {

@@ -46,7 +46,7 @@ export class LandpadsDashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public dropTable(event: CdkDragDrop<any>) {
+  public dropTable(event: CdkDragDrop<MatTableDataSource<unknown>>) {
     if (event) {
       moveItemInArray(
         this.dataSource.data,

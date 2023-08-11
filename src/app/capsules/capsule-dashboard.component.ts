@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { CapsuleType, QueryType } from './capsule-dashboard.interface';
+import { pageIndexData } from '../dragon/dragon-dashboard.constant';
 
 @Component({
   selector: 'app-capsule-dashboard',
@@ -34,7 +35,7 @@ export class CapsuleDashboardComponent implements OnInit {
     this.getCapsulesDetailsWithQuery(data);
   }
 
-  public getCapsulesDetailsWithQuery(data:QueryType) {
+  public getCapsulesDetailsWithQuery(data: QueryType) {
     this.capsuleService.getCapsulesDetailsWithQuery(data).subscribe((res) => {
       this.displayedColumns = [
         'serial',
@@ -49,7 +50,7 @@ export class CapsuleDashboardComponent implements OnInit {
     });
   }
 
-  public dropTable(event: CdkDragDrop<any>) {
+  public dropTable(event: CdkDragDrop<MatTableDataSource<unknown>>) {
     if (event) {
       moveItemInArray(
         this.dataSource.data,
@@ -61,11 +62,11 @@ export class CapsuleDashboardComponent implements OnInit {
   }
 
   public getPaginatorByQuery() {
-    if (this.paginator.pageIndex != 0) {
+    if (this.paginator.pageIndex != pageIndexData.initail) {
       const data = {
         options: {
           limit: this.paginator.pageSize,
-          page: this.paginator.pageIndex + 1,
+          page: this.paginator.pageIndex + pageIndexData.current,
           sort: this.sort.direction,
         },
       };
@@ -81,5 +82,13 @@ export class CapsuleDashboardComponent implements OnInit {
     }
   }
 
-
+  public getSortingByQuery(value: string) {
+    const data = {
+      options: {
+        limit: this.paginator.pageSize,
+        sort: { [value]: this.sort.direction },
+      },
+    };
+    this.getCapsulesDetailsWithQuery(data);
+  }
 }

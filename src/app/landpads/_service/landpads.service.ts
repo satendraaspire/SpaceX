@@ -11,6 +11,7 @@ import {
 import {
   CapsuleType,
   DashboardType,
+  LauncheIdType,
   LaunchesType,
   PayloadType,
   ShipType,
@@ -30,7 +31,7 @@ export class LandpadsService {
     return this.http.get<DashboardType>(`${landpadsAPI}/${id}`);
   }
 
-  public getLaunchesDetailsById(id: string): Observable<LaunchesType> {
+  public getLaunchesDetailsById(id: string | LauncheIdType): Observable<LaunchesType> {
     return this.http.get<LaunchesType>(`${launchesAPI}/${id}`);
   }
 

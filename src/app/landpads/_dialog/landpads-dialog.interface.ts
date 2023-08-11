@@ -68,3 +68,15 @@ export interface LandPadsOptionsType {
     }
   ];
 }
+export interface LaunchesDetails {
+  ships: [
+    '5ea6ed2e080df4000697c906',
+    '5ea6ed2f080df4000697c90b',
+    '5ea6ed2f080df4000697c90c',
+    '5ea6ed30080df4000697c912'
+  ];
+  capsules: [];
+  payloads: ['5eb0e4beb6c3bb0006eeb1fd'];
+  launchpad: '5e9e4501f509094ba4566f84';
+  id: '5eb87cefffd86e000604b342';
+}

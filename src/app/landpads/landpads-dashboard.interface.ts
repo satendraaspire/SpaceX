@@ -63,6 +63,7 @@ export interface DashboardType {
 }
 
 export interface LaunchesType {
+  id: string;
   name: {
     type: 'String';
     default: null;
@@ -394,6 +395,10 @@ export interface LandpadsNameType {
 }
 
 export interface LaunchesResponseType {
+  type: string;
+}
+
+export interface LauncheIdType {
   type: string;
 }
 

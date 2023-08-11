@@ -1,4 +1,3 @@
-
 export const LandPadsImageURL =
   'https://farm8.staticflickr.com/7740/28358960896_9785456101_o.jpg';
 
@@ -10,7 +9,7 @@ export const ValueType = {
 };
 
 export const DialogType = {
-    height: '480',
-    width: '1000',
-    closeButtonText: 'Close',
-}
+  height: '480',
+  width: '1000',
+  closeButtonText: 'Close',
+};

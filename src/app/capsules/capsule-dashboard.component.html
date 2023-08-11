@@ -47,7 +47,7 @@
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-          
+          (click)="getSortingByQuery('water_landings')"
         >
           Water Landings
         </th>
@@ -62,7 +62,7 @@
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-   
+          (click)="getSortingByQuery('land_landing')"
         >
           Land Landing
         </th>
@@ -77,7 +77,7 @@
           mat-header-cell
           *matHeaderCellDef
           mat-sort-header
-       
+          (click)="getSortingByQuery('launches')"
         >
           Number of Launches
         </th>

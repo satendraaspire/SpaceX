@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'capsules-dashboard',
     component: CapsuleDashboardComponent,
-    title:'Capsules Dashboard'
+    title: 'Capsules Dashboard',
   },
 ];
 
